@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements MouseListener {
 	
 	int panelCounter = 0;
-	Gracz ships =  new Gracz();
+	Gracz gracz =  new Gracz();
 	Przeciwnik przeciwnik = new Przeciwnik();
 	Rozgrywka rozgrywka = new Rozgrywka();
 	
@@ -28,21 +28,21 @@ public class Board extends JPanel implements MouseListener {
 				
 				
 				// pola gracza wypelnione statkami, przeciwnika PustePola
-				ships.polaGracza[panelCounter]=new Gracz();	
+				gracz.polaGracza[panelCounter]=new Gracz();	
 				przeciwnik.polaPrzeciwnika[panelCounter] = new Przeciwnik();
 				
 				//przypisanie numerow pol do tablicy
-				ships.polozeniePolaGracza[panelCounter] = panelCounter;
+				gracz.polozeniePolaGracza[panelCounter] = panelCounter;
 				przeciwnik.polozeniePolaPrzeciwnika[panelCounter] = panelCounter;
 				
 			// todo: rozgrywka
 				
 				
-		        ships.polaGracza[panelCounter].setBounds(32+25*i,32+25*j,22,22);
+		        gracz.polaGracza[panelCounter].setBounds(32+25*i,32+25*j,22,22);
 		        przeciwnik.polaPrzeciwnika[panelCounter].setBounds(322+25*i,32+25*j,22,22);
 		        
 		     
-		        add(ships.polaGracza[panelCounter]);
+		        add(gracz.polaGracza[panelCounter]);
 		        add(przeciwnik.polaPrzeciwnika[panelCounter]);
 		      
 		        panelCounter++;
@@ -106,7 +106,7 @@ public class Board extends JPanel implements MouseListener {
 		}
 		
 		 for(int i=0; i<100; i++){
-		       ships.polaGracza[i].addMouseListener(this);
+		       gracz.polaGracza[i].addMouseListener(this);
 		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
 		 }
 		
@@ -127,9 +127,9 @@ public class Board extends JPanel implements MouseListener {
 				if(rozgrywka.czyJestStatek[i] == true){
 					
 					System.out.println("Trafiony !");
-					przeciwnik.c = new Color(179,0,0);
-					przeciwnik.polaPrzeciwnika[i].repaint();
-				
+					przeciwnik.changeColor();
+					//przeciwnik.polaPrzeciwnika[i].repaint();
+					przeciwnik.repaint();
 				}else{
 					System.out.println("Pudlo !");
 				}
