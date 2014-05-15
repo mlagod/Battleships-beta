@@ -12,54 +12,44 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements MouseListener {
 	
 	int panelCounter = 0;
-	Ships ships =  new Ships();
+	Gracz ships =  new Gracz();
+	Przeciwnik przeciwnik = new Przeciwnik();
+	Rozgrywka rozgrywka = new Rozgrywka();
 	
 	String[] letters = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J"};
 	String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 	
 
-	
-	
-	
-	
-	
 	Board(){
-		
 		
 		for(int j = 0; j < 10; j++){
 			
 			for(int i = 0; i < 10; i++){
 				
-				ships.polaGracza[panelCounter]=new Ships();	
-				ships.polaPrzeciwnika[panelCounter] = new Ships();
+				
+				// pola gracza wypelnione statkami, przeciwnika PustePola
+				ships.polaGracza[panelCounter]=new Gracz();	
+				przeciwnik.polaPrzeciwnika[panelCounter] = new Przeciwnik();
 				
 				//przypisanie numerow pol do tablicy
 				ships.polozeniePolaGracza[panelCounter] = panelCounter;
-				ships.polozeniePolaPrzeciwnika[panelCounter] = panelCounter;
+				przeciwnik.polozeniePolaPrzeciwnika[panelCounter] = panelCounter;
 				
-				ships.czyJestStatek[panelCounter] = true;
+			// todo: rozgrywka
+				
 				
 		        ships.polaGracza[panelCounter].setBounds(32+25*i,32+25*j,22,22);
-		        ships.polaPrzeciwnika[panelCounter].setBounds(322+25*i,32+25*j,22,22);
+		        przeciwnik.polaPrzeciwnika[panelCounter].setBounds(322+25*i,32+25*j,22,22);
 		        
-		       // ships.polaGracz[panelCounter].repaint();
-		       
-		        ships.polaPrzeciwnika[panelCounter].setOpaque(false);
-		        
+		     
 		        add(ships.polaGracza[panelCounter]);
-		        add(ships.polaPrzeciwnika[panelCounter]);
-		        
+		        add(przeciwnik.polaPrzeciwnika[panelCounter]);
 		      
-		        
-		        
 		        panelCounter++;
 			}
 		}
-		
-		
+		rozgrywka.ustawStatki();
 	}
-	
-	
 	
 	protected void paintComponent(Graphics g) {
 		
@@ -69,9 +59,6 @@ public class Board extends JPanel implements MouseListener {
 		Color background = new Color(0,179,255);
 		setBackground(background);
 		
-		
-		
-		
 			// Rysowanie planszy
 		
 			for(int i = 30; i < 280; i+=25){
@@ -79,16 +66,10 @@ public class Board extends JPanel implements MouseListener {
 				for(int j = 30; j < 280; j+=25){
 				
 					g2d.drawRect(j,i,25,25);
-					
-					// g2d.drawImage(ships.ship,i,j,ships);
 			
-				
 			}
 		}
-			///////////////
 			
-			 
-		
 		for(int i = 30; i < 280; i+=25){
 			
 			for(int j = 320; j < 570; j+=25)
@@ -96,7 +77,6 @@ public class Board extends JPanel implements MouseListener {
 				g2d.drawRect(j, i, 25, 25);
 		}
 
-		
 		// Rysowanie liter przy planszy
 		
 		int pozycjaLiteryA = 40;
@@ -116,7 +96,6 @@ public class Board extends JPanel implements MouseListener {
 		
 		int pozycjaNum = 47;
 		
-		
 		for(int i = 0; i < 10; i++){
 			
 			g2d.drawString(numbers[i], 15, pozycjaNum);
@@ -128,13 +107,10 @@ public class Board extends JPanel implements MouseListener {
 		
 		 for(int i=0; i<100; i++){
 		       ships.polaGracza[i].addMouseListener(this);
-		       ships.polaPrzeciwnika[i].addMouseListener(this);
+		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
 		 }
 		
 	}
-
-	
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -144,15 +120,24 @@ public class Board extends JPanel implements MouseListener {
 		
 		for(int i = 0; i < 100; i++){
 			
-			if(o == ships.polaPrzeciwnika[i]){
+			if(o == przeciwnik.polaPrzeciwnika[i]){
 				
 				
-				System.out.println("Atak na pole " + ships.polozeniePolaPrzeciwnika[i]);
-				if(ships.czyJestStatek[i] == true){
+				System.out.println("Atak na pole " + przeciwnik.polozeniePolaPrzeciwnika[i]);
+				if(rozgrywka.czyJestStatek[i] == true){
 					
 					System.out.println("Trafiony !");
+					przeciwnik.c = new Color(179,0,0);
+					przeciwnik.polaPrzeciwnika[i].repaint();
+				
 				}else{
 					System.out.println("Pudlo !");
+				}
+				
+				if(rozgrywka.zuzytePola[i] == true){
+					System.out.println("TEST: Zuzyte pole");
+				}else{
+					System.out.println("TEST: Wolne");
 				}
 			}
 		
