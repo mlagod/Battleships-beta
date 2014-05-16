@@ -129,7 +129,7 @@ public class Board extends JPanel implements MouseListener {
 					System.out.println("Trafiony !");
 					przeciwnik.changeColor();
 					//przeciwnik.polaPrzeciwnika[i].repaint();
-					przeciwnik.repaint();
+					//przeciwnik.repaint();
 				}else{
 					System.out.println("Pudlo !");
 				}

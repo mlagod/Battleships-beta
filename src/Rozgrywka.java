@@ -192,18 +192,107 @@ public class Rozgrywka {
 		
 		if(poziom == false && pion == true){
 			
-			if(pole < 40){
+			if(pole < 30){
 				
 				czyJestStatek[pole] = true;
 				czyJestStatek[pole+10] = true;
 				czyJestStatek[pole+20] = true;
 				czyJestStatek[pole+30] = true;
+				
+				//--------------------- zajete pola
+				
+				if(pole == 0){			
+					for(int i = pole; i < 42; i+=10){
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}	
+					
+				}else if(pole ==9){
+					for(int i = pole; i < 50; i+=10){
+						zuzytePola[i] = true;
+						zuzytePola[i-1] = true;
+					}
+				
+				}else if(pole < 10){
+					for(int i = pole; i < pole+42; i+=10){
+						zuzytePola[i-1] = true;
+						zuzytePola[i] = true;
+						zuzytePola[i+1]= true;
+					}
+				
+				}else if(pole % 10 == 0){
+					for(int i = pole-10; i < pole+42; i+= 10){
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}
+					
+				}else if(pole % 10 == 9){
+					for(int i = pole-10; i< pole+41; i+=10){
+						zuzytePola[i-1] = true;
+						zuzytePola[i] = true;
+					}
+				}else{
+					
+					for(int i = pole-10; i < pole+42; i+=10){
+						zuzytePola[i-1] = true;
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+								
+					}
+				}
+				
 			}else{
 				
 				czyJestStatek[pole] = true;
 				czyJestStatek[pole-10] = true;
 				czyJestStatek[pole-20] = true;
 				czyJestStatek[pole-30] = true;
+				
+				//-----------
+				//zuzyte pola
+				
+				if(pole == 90){
+					
+					for(int i = pole; i > 59; i-=10){
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}
+				}else if(pole == 99){
+				
+					for(int i = pole; i > 57; i-=10){
+						zuzytePola[i] = true;
+						zuzytePola[i-1] = true;
+					}
+				}else if(pole > 89){
+					
+					for(int i = pole; i > pole-42; i-=10){
+						zuzytePola[i-1] = true;
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}
+				}else if(pole % 10 == 0){
+					
+					for(int i = pole+10; i > pole-41; i-= 10){
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}
+					
+				}else if(pole % 10 == 9){
+					
+					for(int i = pole+10; i > pole-42;i-=10){
+						zuzytePola[i] = true;
+						zuzytePola[i-1] = true;
+					}
+				}else{
+					
+					for(int i = pole+10; i > pole-42;i-=10){
+						zuzytePola[i-1] = true;
+						zuzytePola[i] = true;
+						zuzytePola[i+1] = true;
+					}
+				}
+			
+			
 			}
 		}
 		

@@ -15,6 +15,7 @@ public class Przeciwnik extends JPanel {
 	
 	public void changeColor(){
 		c = traf;
+		
 	}
 	
 	protected void paintComponent(Graphics g){
