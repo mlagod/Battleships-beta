@@ -8,6 +8,140 @@ public class Rozgrywka {
 	
 	boolean[] zuzytePola = new boolean[100];
 	
+	private void zajmijPolaCzteromasztowiecPoziomoGora(int pole){
+		
+		if(pole == 0){	
+			for(int i = pole; i < 15; i++){
+				zuzytePola[i]=true;	
+				if(i == 4){
+					i = 9;
+				}	
+			}	
+		}else if(pole < 10){
+			
+			for(int i = pole-1; i < pole+15; i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole+4){  
+					i = pole+8;
+				}
+			}
+			
+		}else if(pole == 90){
+			
+			for(int i = pole+4; i > 79; i--){
+				zuzytePola[i] = true;
+				
+				if(i == 90){
+					i=85;
+				}
+			}
+			
+		}else if(pole > 90){
+			
+			for(int i = pole+4; i > pole-12; i--){
+				zuzytePola[i] = true;
+				
+				if(i == pole-1){
+					i = pole-5;
+				}
+			}
+		
+		}else if(pole % 10 == 0){
+			
+			for(int i = pole-10; i < pole +15 ;i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole-6){
+					i = pole-1;
+				}
+				if(i == pole+4){
+					i = pole+9;
+				}
+			}
+			
+		}else{
+			
+			for(int i = pole-11; i < pole + 15; i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole-6){
+					i= pole-2;
+				}
+				if(i == pole+4){
+					i = pole+8;
+				}
+			}
+		}
+	}
+	
+	private void zajmijPolaCzteromasztowiecPoziomoDol(int pole){
+		
+		if(pole == 9){
+			
+			for(int i = pole-4; i < 11; i++){
+				zuzytePola[i] = true;
+				
+				if(i == 9){
+					i = 5;
+				}
+			}
+		}else if(pole < 10){
+			
+			for(int i = pole-4; i < pole+12; i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole+1){
+					i = pole+5;
+				}
+			}
+		}else if(pole == 99){
+			
+			for(int i = pole; i > pole - 15; i--){
+				zuzytePola[i] = true;
+				
+				if(i == pole-4){
+					i = pole-9;
+				}
+			}
+		}else if(pole > 89){
+			
+			for(int i = pole +1; i > pole - 15;i--){
+				zuzytePola[i] = true;
+				
+				if(i == pole-4){
+					i = pole-8;
+				}
+			}
+			
+		}else if(pole % 10 == 9){
+			
+			for(int i = pole-14; i < pole+11; i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole-10){
+					i = pole-5;
+				}
+				if(i == pole){
+					i = pole+5;
+				}
+			}
+			
+		}else{
+			
+			for(int i = pole-14; i < pole+12; i++){
+				zuzytePola[i] = true;
+				
+				if(i == pole-9){
+					i = pole-5;
+				}
+				if(i == pole+1){
+					i= pole+5;
+				}
+			}
+		}
+	}
+	
 	public void ustawStatki(){
 		
 	
@@ -34,7 +168,7 @@ public class Rozgrywka {
 		
 		int pole = r.nextInt(100);
 		
-		
+
 		//jezeli kierunek poziomy
 		if(poziom = true && pion == false){
 		
@@ -45,76 +179,9 @@ public class Rozgrywka {
 			czyJestStatek[pole+2] = true;
 			czyJestStatek[pole+3] = true;
 			
-			//statek w pierwszym wierszu, pola, w ktorych nie moze stac nic innego
-			//----
-			if(pole == 0){
-				
-				for(int i = pole; i < 15; i++){
-					zuzytePola[i]=true;
-					
-					if(i == 4){
-						i = 9;
-					}
-					
-				}
 			
-			}else if(pole < 10){
-				
-				for(int i = pole-1; i < pole+15; i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole+4){  
-						i = pole+8;
-					}
-				}
-				
-			}else if(pole == 90){
-				
-				for(int i = pole+4; i > 79; i--){
-					zuzytePola[i] = true;
-					
-					if(i == 90){
-						i=85;
-					}
-				}
-				
-			}else if(pole > 90){
-				
-				for(int i = pole+4; pole > pole-12; i--){
-					zuzytePola[i] = true;
-					
-					if(i == pole-1){
-						i = pole-5;
-					}
-				}
+			zajmijPolaCzteromasztowiecPoziomoGora(pole);
 			
-			}else if(pole % 10 == 0){
-				
-				for(int i = pole-10; i < pole +15 ;i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole-6){
-						i = pole-1;
-					}
-					if(i == pole+4){
-						i = pole+9;
-					}
-				}
-				
-			}else{
-				
-				for(int i = pole-11; i < pole + 15; i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole-6){
-						i= pole-2;
-					}
-					if(i == pole+4){
-						i = pole+8;
-					}
-				}
-			}
-			//-----
 		}else{
 		
 			czyJestStatek[pole] = true;
@@ -122,69 +189,7 @@ public class Rozgrywka {
 			czyJestStatek[pole-2] = true;
 			czyJestStatek[pole-3] = true;
 			
-			if(pole == 9){
-				
-				for(int i = pole-4; i < 11; i++){
-					zuzytePola[i] = true;
-					
-					if(i == 9){
-						i = 5;
-					}
-				}
-			}else if(pole < 10){
-				
-				for(int i = pole-4; i < pole+12; i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole+1){
-						i = pole+5;
-					}
-				}
-			}else if(pole == 99){
-				
-				for(int i = pole; i > pole - 15; i--){
-					zuzytePola[i] = true;
-					
-					if(i == pole-4){
-						i = pole-9;
-					}
-				}
-			}else if(pole > 89){
-				
-				for(int i = pole +1; i > pole - 15;i--){
-					zuzytePola[i] = true;
-					
-					if(i == pole-4){
-						i = pole-8;
-					}
-				}
-				
-			}else if(pole % 10 == 9){
-				
-				for(int i = pole-14; i < pole+11; i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole-10){
-						i = pole-5;
-					}
-					if(i == pole){
-						i = pole+5;
-					}
-				}
-				
-			}else{
-				
-				for(int i = pole-14; i < pole+12; i++){
-					zuzytePola[i] = true;
-					
-					if(i == pole-9){
-						i = pole-5;
-					}
-					if(i == pole+1){
-						i= pole+5;
-					}
-				}
-			}
+			zajmijPolaCzteromasztowiecPoziomoDol(pole);
 		}
 		
 		}
@@ -285,7 +290,7 @@ public class Rozgrywka {
 					}
 				}else{
 					
-					for(int i = pole+10; i > pole-42;i-=10){
+					for(int i = pole+10; i > pole-42; i-=10){
 						zuzytePola[i-1] = true;
 						zuzytePola[i] = true;
 						zuzytePola[i+1] = true;

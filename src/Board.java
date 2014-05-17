@@ -127,14 +127,16 @@ public class Board extends JPanel implements MouseListener {
 				if(rozgrywka.czyJestStatek[i] == true){
 					
 					System.out.println("Trafiony !");
-					przeciwnik.changeColor();
+				
 					//przeciwnik.polaPrzeciwnika[i].repaint();
-					//przeciwnik.repaint();
+					przeciwnik.c = new Color(179,0,0);
+					
 				}else{
 					System.out.println("Pudlo !");
 				}
 				
 				if(rozgrywka.zuzytePola[i] == true){
+					
 					System.out.println("TEST: Zuzyte pole");
 				}else{
 					System.out.println("TEST: Wolne");

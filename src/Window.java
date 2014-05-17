@@ -6,12 +6,12 @@ import javax.swing.*;
 
 public class Window {
 	
-
+JFrame okno;
 
 	public void setup(){
 
 		
-	JFrame okno = new JFrame("Battleships");	
+	 okno = new JFrame("Battleships");	
 	JPanel board = new Board();
 
 	board.setLayout(null);
