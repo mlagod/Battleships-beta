@@ -414,6 +414,238 @@ public class Rozgrywka {
 		}
 	}
 	
+	private void zajmijPolaDwuPoziomLewo(int pole){
+		
+		if(pole == 0){
+			for(int i = pole; i < pole+13; i++){
+				zuzytePola[i] = true;
+				if(i == pole+2){
+					i= pole+9;
+				}
+			}
+		}else if(pole < 10){
+			for(int i = pole-1; i < pole+13;i++){
+				zuzytePola[i] = true;
+				if(i == pole+2){
+					i = pole+8;
+				}
+			}
+		}else if(pole == 90){
+			for(int i = pole+2; i > pole-11;i--){
+				zuzytePola[i] = true;
+				if(i == pole){
+					i = pole-7;
+				}
+			}
+		}else if(pole > 90){
+			for(int i = pole+2; i > pole-12; i--){
+				zuzytePola[i] = true;
+				if(i == pole-1){
+					i=pole-7;
+				}
+			}
+		}else if(pole % 10 == 0){
+			for(int i = pole-10; i < pole+13;i++){
+				zuzytePola[i] = true;
+				if(i == pole-8){
+					i = pole-1;
+				}
+				if(i == pole+2){
+					i = pole+9;
+				}
+			}
+		}else{
+			for(int i = pole-11; i < pole+13; i++){
+				zuzytePola[i] = true;
+				if(i == pole-8){
+					i = pole-2;
+				}
+				if(i == pole+2){
+					i = pole+8;
+				}
+			}
+		}
+	}
+	
+	private void zajmijPolaDwuPoziomPrawo(int pole){
+		
+		if( pole == 9){
+			for(int i = pole-2; i < pole+11; i++){
+				zuzytePola[i] = true;
+				if(i == pole){
+					i = pole-7;
+				}
+			}
+		}else if( pole < 10){
+			for(int i = pole-2; i < pole+12;i++){
+				zuzytePola[i] = true;
+				if(i == pole+1){
+					i= pole+7;
+				}
+			}
+		}else if(pole == 99){
+			for(int i = pole; i > pole-13; i--){
+				zuzytePola[i] = true;
+				if(i == pole-2){
+					i=pole-9;
+				}
+			}
+		}else if(pole > 89){
+			for(int i = pole+1; i > pole-13;i--){
+				zuzytePola[i] = true;
+				if(i == pole-2){
+					i=pole-8;
+				}
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole+10; i > pole-13;i--){
+				zuzytePola[i] = true;
+				if(i == pole+8){
+					i = pole+1;
+				}
+				if(i == pole-2){
+					i = pole-9;
+				}
+			}
+		}else{
+			for(int i = pole-12; i < pole+12;i++){
+				zuzytePola[i] = true;
+				if(i == pole-9){
+					i = pole-3;
+				}
+				if(i == pole+1){
+					i = pole+7;
+				}
+			}
+		}
+	}
+	
+	private void zajmijPolaDwuPionGora(int pole){
+		
+		if(pole == 0){
+			for(int i = pole; i < pole+22;i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole == 9){
+			for(int i = pole; i < pole+21;i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else if(pole < 10){
+			for(int i = pole; i < pole+22;i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if( pole % 10 == 0){
+			for(int i = pole-10; i < pole+22; i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole-10; i < pole+21; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else{
+			for(int i = pole-10; i < pole+22; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}
+	}
+	
+	private void zajmijPolaDwuPionDol(int pole){
+		
+		if( pole == 90){
+			for(int i = pole; i > pole-21; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole == 99){
+			for(int i = pole; i > pole-22; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i-1] = true;
+			}
+		}else if(pole > 89){
+			for(int i = pole; i > pole-22; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 0){
+			for(int i = pole+10; i > pole-21; i-= 10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole+10; i > pole-22; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else{
+			for(int i = pole+10; i > pole-22; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}
+	}
+	
+	private void zajmijPolaJednomasztowiec(int pole){
+		
+		if(pole == 0){
+			for(int i = pole; i < pole +12; i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole == 9){
+			for(int i = pole; i < pole+11; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else if(pole == 90){
+			for(int i = pole; i > pole-11; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole == 99){
+			for(int i = pole; i > pole-12; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else if(pole < 10){
+			for(int i = pole; i < pole+12; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole > 89){
+			for( int i = pole; i > pole-12; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 0){
+			for(int i = pole-10; i < pole+12; i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole-10; i < pole+11; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else{
+			for(int i = pole-10; i < pole+12; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}
+	}
 	
 	public void ustawStatki(){
 	
@@ -609,7 +841,9 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole] = true;
 		    			 czyJestStatek[pole+1] = true;
 		    			 
-		    			 //todo: zuzyte pola dwumasztowiec poziomo lewo
+		    			 // zuzyte pola dwumasztowiec poziomo lewo
+		    			 this.zajmijPolaDwuPoziomLewo(pole);
+		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
 		    	 }else{		// prawa strona planszy
@@ -622,7 +856,9 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole] = true;
 		    			 czyJestStatek[pole-1] = true;
 		    			 
-		    			 //todo: zuzyte pola dwumasztowiec poziom prawo
+		    			 // zuzyte pola dwumasztowiec poziom prawo
+		    			 this.zajmijPolaDwuPoziomPrawo(pole);
+		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
 		    	 }
@@ -639,7 +875,9 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole] = true;
 		    			 czyJestStatek[pole+10] = true;
 		    			 
-		    			 //todo: zuzyte pola dwumasztowiec pion gora
+		    			 // zuzyte pola dwumasztowiec pion gora
+		    			 this.zajmijPolaDwuPionGora(pole);
+		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
 		    	 }else{
@@ -650,12 +888,35 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole] = true;
 		    			 czyJestStatek[pole-10] = true;
 		    			 
-		    			 //todo: zuzyte pola dwumasztowiec pion dol
+		    			 // zuzyte pola dwumasztowiec pion dol
+		    			 this.zajmijPolaDwuPionDol(pole);
+		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
 		    	 }
 		     }
 		}// koniec while dwumasztowcow
+		
+		//--------------------------dodawanie 4 jednomasztowcow
+		int liczbaJednomasztowcow = 0;
+		
+		while(liczbaJednomasztowcow < 4){
+			
+			pole = r.nextInt(100); // losowanie nowego pola
+		     System.out.println("dbg 1." + liczbaJednomasztowcow + " : " + pole);
+		     
+		    if(zuzytePola[pole] == true){
+		    	continue;
+		    }else{
+		    	czyJestStatek[pole] = true;
+		    	// zuzyte pola jednomasztowca
+		    	this.zajmijPolaJednomasztowiec(pole);
+		    	
+		    	liczbaJednomasztowcow++;
+		    }
+			
+		} // koniec while jednomasztowcow
+		
 		
 	}
 
