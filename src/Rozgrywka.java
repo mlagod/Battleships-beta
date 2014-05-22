@@ -229,6 +229,7 @@ public class Rozgrywka {
 		}
 	
 	}
+	//----------------- zajete pola trzymasztowcow 
 	
 	private void zajmijPolaTrzyPoziomLewo(int pole){
 		
@@ -282,6 +283,135 @@ public class Rozgrywka {
 			}
 		}
 		
+	}
+	
+	private void zajmijPolaTrzyPoziomPrawo(int pole){
+		
+		if(pole == 9){
+			for(int i = pole-3; i < 20; i++){
+				zuzytePola[i] = true;
+				if(i == pole){
+					i = 15;
+				}
+			}
+		}else if(pole < 10){
+			for(int i = pole-3; i < pole+12; i++){
+				zuzytePola[i] = true;
+				if(i == pole+1){
+					i = pole+6;
+				}
+			}
+		
+		}else if(pole == 99){
+			for(int i = pole; i > 85; i--){
+				zuzytePola[i] = true;
+				if(i == 96){
+					i=90;
+				}
+			}
+		}else if(pole > 89){
+			for(int i = pole+1; i > pole-14; i--){
+				zuzytePola[i] = true;
+				if(i == pole-3){
+					i = pole-8;
+				}
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole+10; i > pole-14; i--){
+				zuzytePola[i] = true;
+				if(i == pole+7){
+					i = pole+1;
+				}
+				if(i == pole-3){
+					i = pole-9;
+				}
+			}
+		}else{
+			for(int i = pole-13; i < pole+12; i++){
+				zuzytePola[i] = true;
+				if(i == pole-9){
+					i = pole-4;
+				}
+				if(i == pole+1){
+					i= pole+6;
+				}
+			}
+		}
+	}
+	
+	private void zajmijPolaTrzyPionGora(int pole){
+		
+		if(pole == 0){
+			for(int i = pole; i < 32; i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+				
+			}
+		}else if(pole == 9){
+			for(int i = pole; i < 40; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else if(pole < 10){
+			for(int i = pole; i < pole+32; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 0){
+			for(int i = pole-10; i < pole+32; i+=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole - 10; i < pole+32; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+			}
+		}else{
+			for(int i = pole - 10; i < pole+32; i+=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}
+	}
+	
+	private void zajmijPolaTrzyPionDol(int pole){
+		
+		if(pole == 90){
+			for(int i = pole; i > pole - 31; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole == 99){
+			for(int i = pole; i > pole-32; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i-1] = true;
+			}
+		}else if(pole > 89){
+			for(int i = pole; i > pole-32; i-=10){
+				zuzytePola[i-1]= true;
+				zuzytePola[i]= true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 0){
+			for(int i = pole+10; i > pole-31; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}else if(pole % 10 == 9){
+			for(int i = pole+10; i > pole-32; i-=10){
+				zuzytePola[i] = true;
+				zuzytePola[i-1] = true;
+			}
+		}else{
+			for(int i = pole+10; i > pole - 32; i-=10){
+				zuzytePola[i-1] = true;
+				zuzytePola[i] = true;
+				zuzytePola[i+1] = true;
+			}
+		}
 	}
 	
 	
@@ -384,7 +514,7 @@ public class Rozgrywka {
 	     //jezeli kierunek poziomy
 	     if(poziom == true && pion == false){
 	    	 
-	    	 if(pole % 10 == 0 || pole % 10 == 1){ // lewa strona planszy
+	    	 if(pole % 10 == 0 || pole % 10 == 1 || pole % 10 == 2){ // lewa strona planszy
 	    		 
 	    		 if(zuzytePola[pole] == true || zuzytePola[pole+1] == true || zuzytePola[pole+2] == true){
 	    			 continue;
@@ -406,7 +536,9 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole-1] = true;
 	    			 czyJestStatek[pole-2] = true;
 	    			 
-	    			 // todo: zajete pola trzymasztowca poziomo prawo
+	    			 //  zajete pola trzymasztowca poziomo prawo
+	    			 this.zajmijPolaTrzyPoziomPrawo(pole);
+	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
 	    	 }
@@ -414,7 +546,7 @@ public class Rozgrywka {
 		 // jezeli kierunek pionowy
 	     if(poziom == false && pion == true){
 	    	 
-	    	 if(pole < 20){ // dodawanie w dol
+	    	 if(pole < 30){ // dodawanie w dol
 	    		 
 	    		 if(zuzytePola[pole] == true || zuzytePola[pole+10] == true || zuzytePola[pole+20] == true){
 	    			 continue;
@@ -423,7 +555,9 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole+10] = true;
 	    			 czyJestStatek[pole+20] = true;
 	    			 
-	    			 //todo: zajete pola trzymasztowca pionowo gora
+	    			 //zajete pola trzymasztowca pionowo gora
+	    			 this.zajmijPolaTrzyPionGora(pole);
+	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
 	    	 }else{ // dodawanie w gore
@@ -436,15 +570,93 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole-20] = true;
 	    			 
 	    			 //todo: zajete pola trzymasztowca pionowo dol
+	    			 this.zajmijPolaTrzyPionDol(pole);
+	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
 	    	 }
 	     }
 	     
-		} // koniec while
+		} // koniec while trzymasztowcow 
 		
+		//----------------- trzy dwumasztowce
 		
-		System.out.println("#dbg: " + pole);
+		int liczbaDwumasztowcow = 0;
+		
+		while(liczbaDwumasztowcow < 3){
+			
+			kierunek = r.nextInt(20);
+			
+			if(kierunek % 2 == 0){
+				poziom = true;
+				pion = false;
+			}else{
+				poziom = false;
+				pion = true;
+			}
+			
+			pole = r.nextInt(100); // losowanie nowego pola
+		     System.out.println("dbg 2." + liczbaDwumasztowcow + " : " + pole);
+		     
+		     if(poziom == true && pion == false){ // kierunek poziomy
+		    	 
+		    	 if(pole % 10 == 0 || pole % 10 == 1){ // lewa strona planszy
+		    		 
+		    		 if(zuzytePola[pole] == true || zuzytePola[pole+1] == true){
+		    			 continue;
+		    			 
+		    		 }else{
+		    			 czyJestStatek[pole] = true;
+		    			 czyJestStatek[pole+1] = true;
+		    			 
+		    			 //todo: zuzyte pola dwumasztowiec poziomo lewo
+		    			 liczbaDwumasztowcow++;
+		    		 }
+		    	 }else{		// prawa strona planszy
+		    		 
+		    		 if(zuzytePola[pole] == true || zuzytePola[pole-1] == true){
+		    			 continue;
+		    			 
+		    		 }else{
+		    			 
+		    			 czyJestStatek[pole] = true;
+		    			 czyJestStatek[pole-1] = true;
+		    			 
+		    			 //todo: zuzyte pola dwumasztowiec poziom prawo
+		    			 liczbaDwumasztowcow++;
+		    		 }
+		    	 }
+		     }
+		     
+		     //kierunek pionowy
+		     if(poziom == false && pion == true){
+		    	 
+		    	 if(pole < 20){
+		    		 
+		    		 if(zuzytePola[pole] == true || zuzytePola[pole+10] == true){
+		    			 continue;
+		    		 }else{
+		    			 czyJestStatek[pole] = true;
+		    			 czyJestStatek[pole+10] = true;
+		    			 
+		    			 //todo: zuzyte pola dwumasztowiec pion gora
+		    			 liczbaDwumasztowcow++;
+		    		 }
+		    	 }else{
+		    		 
+		    		 if(zuzytePola[pole] == true || zuzytePola[pole-10] == true){
+		    			 continue;
+		    		 }else{
+		    			 czyJestStatek[pole] = true;
+		    			 czyJestStatek[pole-10] = true;
+		    			 
+		    			 //todo: zuzyte pola dwumasztowiec pion dol
+		    			 liczbaDwumasztowcow++;
+		    		 }
+		    	 }
+		     }
+		}// koniec while dwumasztowcow
+		
 	}
 
 }

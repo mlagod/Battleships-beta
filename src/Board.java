@@ -49,6 +49,12 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
 		rozgrywka.ustawStatki();
+		
+		for(int i = 0; i < 100; i++){
+			if(rozgrywka.zuzytePola[i]==true){
+			przeciwnik.polaPrzeciwnika[i].setBackground(Color.yellow);
+			}
+		}
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -129,8 +135,8 @@ public class Board extends JPanel implements MouseListener {
 					System.out.println("Trafiony !");
 				
 					//przeciwnik.polaPrzeciwnika[i].repaint();
-					przeciwnik.c = new Color(179,0,0);
-					
+					Color t = new Color(179,0,0);
+					przeciwnik.polaPrzeciwnika[i].setBackground(Color.red);
 				}else{
 					System.out.println("Pudlo !");
 				}

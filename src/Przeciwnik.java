@@ -11,10 +11,13 @@ public class Przeciwnik extends JPanel {
 	JPanel[] polaPrzeciwnika = new JPanel[100];
 	int[] polozeniePolaPrzeciwnika = new int[100];
 	Color c = new Color(0,179,0);
-	Color traf = new Color(179,0,0);
+	//Color traf = new Color(179,0,0);
 	
+	public Przeciwnik(){
+		this.setBackground(c);
+	}
 	
-	
+	/*
 	protected void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
@@ -27,6 +30,6 @@ public class Przeciwnik extends JPanel {
 		
 	
 	}
-	
+	*/
 
 }
