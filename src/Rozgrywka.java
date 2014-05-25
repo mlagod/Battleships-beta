@@ -1,14 +1,15 @@
+import java.awt.Color;
 import java.util.Random;
 
 
 public class Rozgrywka {
 	
 	Przeciwnik p = new Przeciwnik();
-	boolean[] czyJestStatek = new boolean[100];
-	boolean[] zuzytePola = new boolean[100];
+	boolean atakCpu[] = new boolean[100];
+	Gracz g = new Gracz();
 	
 	
-	private void zajmijPolaCzteroPoziomoGora(int pole){
+	private void zajmijPolaCzteroPoziomoGora(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){	
 			for(int i = pole; i < 15; i++){
@@ -75,7 +76,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaCzteroPoziomoDol(int pole){
+	private void zajmijPolaCzteroPoziomoDol(int pole, boolean zuzytePola[]){
 		
 		if(pole == 9){
 			
@@ -142,7 +143,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaCzteroPionowoGora(int pole){
+	private void zajmijPolaCzteroPionowoGora(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){			
 			for(int i = pole; i < 42; i+=10){
@@ -185,7 +186,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaCzteroPionowoDol(int pole){
+	private void zajmijPolaCzteroPionowoDol(int pole, boolean zuzytePola[]){
 		
 		if(pole == 90){
 			
@@ -231,7 +232,7 @@ public class Rozgrywka {
 	}
 	//----------------- zajete pola trzymasztowcow 
 	
-	private void zajmijPolaTrzyPoziomLewo(int pole){
+	private void zajmijPolaTrzyPoziomLewo(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){
 			for(int i = pole; i < 14; i++){
@@ -285,7 +286,7 @@ public class Rozgrywka {
 		
 	}
 	
-	private void zajmijPolaTrzyPoziomPrawo(int pole){
+	private void zajmijPolaTrzyPoziomPrawo(int pole, boolean zuzytePola[]){
 		
 		if(pole == 9){
 			for(int i = pole-3; i < 20; i++){
@@ -339,7 +340,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaTrzyPionGora(int pole){
+	private void zajmijPolaTrzyPionGora(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){
 			for(int i = pole; i < 32; i+=10){
@@ -377,7 +378,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaTrzyPionDol(int pole){
+	private void zajmijPolaTrzyPionDol(int pole, boolean zuzytePola[]){
 		
 		if(pole == 90){
 			for(int i = pole; i > pole - 31; i-=10){
@@ -414,7 +415,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaDwuPoziomLewo(int pole){
+	private void zajmijPolaDwuPoziomLewo(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){
 			for(int i = pole; i < pole+13; i++){
@@ -467,7 +468,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaDwuPoziomPrawo(int pole){
+	private void zajmijPolaDwuPoziomPrawo(int pole, boolean zuzytePola[]){
 		
 		if( pole == 9){
 			for(int i = pole-2; i < pole+11; i++){
@@ -520,7 +521,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaDwuPionGora(int pole){
+	private void zajmijPolaDwuPionGora(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){
 			for(int i = pole; i < pole+22;i+=10){
@@ -557,7 +558,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaDwuPionDol(int pole){
+	private void zajmijPolaDwuPionDol(int pole, boolean zuzytePola[]){
 		
 		if( pole == 90){
 			for(int i = pole; i > pole-21; i-=10){
@@ -594,7 +595,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	private void zajmijPolaJednomasztowiec(int pole){
+	private void zajmijPolaJednomasztowiec(int pole, boolean zuzytePola[]){
 		
 		if(pole == 0){
 			for(int i = pole; i < pole +12; i+=10){
@@ -647,7 +648,7 @@ public class Rozgrywka {
 		}
 	}
 	
-	public void ustawStatki(){
+	public void ustawStatki(boolean[] czyJestStatek, boolean zuzytePola[]){
 	
 		boolean poziom;
 		boolean pion;
@@ -682,7 +683,7 @@ public class Rozgrywka {
 			czyJestStatek[pole+2] = true;
 			czyJestStatek[pole+3] = true;
 		
-			this.zajmijPolaCzteroPoziomoGora(pole);
+			this.zajmijPolaCzteroPoziomoGora(pole, zuzytePola);
 			
 		}else{
 		
@@ -691,7 +692,7 @@ public class Rozgrywka {
 			czyJestStatek[pole-2] = true;
 			czyJestStatek[pole-3] = true;
 			
-			this.zajmijPolaCzteroPoziomoDol(pole);
+			this.zajmijPolaCzteroPoziomoDol(pole, zuzytePola);
 		}
 		
 		}
@@ -707,7 +708,7 @@ public class Rozgrywka {
 				czyJestStatek[pole+30] = true;
 				
 				//--------------------- zajete pola
-				this.zajmijPolaCzteroPionowoGora(pole);
+				this.zajmijPolaCzteroPionowoGora(pole, zuzytePola);
 			
 			}else{
 				
@@ -716,7 +717,7 @@ public class Rozgrywka {
 				czyJestStatek[pole-20] = true;
 				czyJestStatek[pole-30] = true;
 				
-				this.zajmijPolaCzteroPionowoDol(pole);
+				this.zajmijPolaCzteroPionowoDol(pole, zuzytePola);
 
 			}
 		}
@@ -755,7 +756,7 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole+1] = true;
 	    			 czyJestStatek[pole+2] = true;
 	    			 
-	    			this.zajmijPolaTrzyPoziomLewo(pole);
+	    			this.zajmijPolaTrzyPoziomLewo(pole, zuzytePola);
 	    			
 	    			 liczbaTrzymasztowcow++;
 	    		 }
@@ -769,7 +770,7 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole-2] = true;
 	    			 
 	    			 //  zajete pola trzymasztowca poziomo prawo
-	    			 this.zajmijPolaTrzyPoziomPrawo(pole);
+	    			 this.zajmijPolaTrzyPoziomPrawo(pole, zuzytePola);
 	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
@@ -788,7 +789,7 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole+20] = true;
 	    			 
 	    			 //zajete pola trzymasztowca pionowo gora
-	    			 this.zajmijPolaTrzyPionGora(pole);
+	    			 this.zajmijPolaTrzyPionGora(pole, zuzytePola);
 	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
@@ -802,7 +803,7 @@ public class Rozgrywka {
 	    			 czyJestStatek[pole-20] = true;
 	    			 
 	    			 //todo: zajete pola trzymasztowca pionowo dol
-	    			 this.zajmijPolaTrzyPionDol(pole);
+	    			 this.zajmijPolaTrzyPionDol(pole, zuzytePola);
 	    			 
 	    			 liczbaTrzymasztowcow++;
 	    		 }
@@ -842,7 +843,7 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole+1] = true;
 		    			 
 		    			 // zuzyte pola dwumasztowiec poziomo lewo
-		    			 this.zajmijPolaDwuPoziomLewo(pole);
+		    			 this.zajmijPolaDwuPoziomLewo(pole, zuzytePola);
 		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
@@ -857,7 +858,7 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole-1] = true;
 		    			 
 		    			 // zuzyte pola dwumasztowiec poziom prawo
-		    			 this.zajmijPolaDwuPoziomPrawo(pole);
+		    			 this.zajmijPolaDwuPoziomPrawo(pole, zuzytePola);
 		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
@@ -876,7 +877,7 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole+10] = true;
 		    			 
 		    			 // zuzyte pola dwumasztowiec pion gora
-		    			 this.zajmijPolaDwuPionGora(pole);
+		    			 this.zajmijPolaDwuPionGora(pole, zuzytePola);
 		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
@@ -889,7 +890,7 @@ public class Rozgrywka {
 		    			 czyJestStatek[pole-10] = true;
 		    			 
 		    			 // zuzyte pola dwumasztowiec pion dol
-		    			 this.zajmijPolaDwuPionDol(pole);
+		    			 this.zajmijPolaDwuPionDol(pole, zuzytePola);
 		    			 
 		    			 liczbaDwumasztowcow++;
 		    		 }
@@ -910,12 +911,42 @@ public class Rozgrywka {
 		    }else{
 		    	czyJestStatek[pole] = true;
 		    	// zuzyte pola jednomasztowca
-		    	this.zajmijPolaJednomasztowiec(pole);
+		    	this.zajmijPolaJednomasztowiec(pole, zuzytePola);
 		    	
 		    	liczbaJednomasztowcow++;
 		    }
 			
 		} // koniec while jednomasztowcow
+		
+		
+	}
+	
+	public void cpuMove(){
+		
+		Random r = new Random();
+		
+		int strzal = 0;
+		
+		boolean oddanoStrzal = false;
+		
+		while(oddanoStrzal == false){
+			
+			 strzal = r.nextInt(100);
+			
+			if(atakCpu[strzal] == true){
+				continue;
+			}else{
+				atakCpu[strzal] = true;
+				oddanoStrzal = true;
+			}
+		}
+		
+		if(g.statkiGracza[strzal] == true){
+			g.polaGracza[strzal].setBackground(Color.orange);
+			this.cpuMove();
+		}else{
+			g.polaGracza[strzal].setBackground(Color.green);
+		}
 		
 		
 	}

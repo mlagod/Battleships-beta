@@ -19,8 +19,16 @@ public class Gracz extends JPanel {
 	BufferedImage ship;
 	JPanel[] polaGracza = new JPanel[100];
 	int[] polozeniePolaGracza = new int[100];
-
+	boolean[] statkiGracza = new boolean[100];
+	boolean[] zuzytePolaGracza = new boolean[100];
 	
+	
+	
+	public Gracz(){
+		this.setBackground(new Color(204,204,255));
+	}
+	
+	/*
 	public Gracz(){
 		
 		super();	
@@ -52,7 +60,7 @@ public class Gracz extends JPanel {
 		g2d.drawImage(ship,0,0,this);
 		
 		
-	}
+	} */
 	
 }
 	

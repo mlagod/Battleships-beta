@@ -41,20 +41,23 @@ public class Board extends JPanel implements MouseListener {
 		        gracz.polaGracza[panelCounter].setBounds(32+25*i,32+25*j,22,22);
 		        przeciwnik.polaPrzeciwnika[panelCounter].setBounds(322+25*i,32+25*j,22,22);
 		        
+		       
 		     
 		        add(gracz.polaGracza[panelCounter]);
 		        add(przeciwnik.polaPrzeciwnika[panelCounter]);
+		       
 		      
 		        panelCounter++;
 			}
 		}
-		rozgrywka.ustawStatki();
-		
+		rozgrywka.ustawStatki(przeciwnik.statkiPrzeciwnika, przeciwnik.zuzytePolaPrzeciwnika);
+		rozgrywka.ustawStatki(gracz.statkiGracza, gracz.zuzytePolaGracza);
+		/*
 		for(int i = 0; i < 100; i++){
-			if(rozgrywka.zuzytePola[i]==true){
+			if(przeciwnik.zuzytePolaPrzeciwnika[i]==true){
 			przeciwnik.polaPrzeciwnika[i].setBackground(Color.yellow);
 			}
-		}
+		}*/
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -62,7 +65,7 @@ public class Board extends JPanel implements MouseListener {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		
-		Color background = new Color(0,179,255);
+		Color background = new Color(223,223,223);
 		setBackground(background);
 		
 			// Rysowanie planszy
@@ -112,8 +115,12 @@ public class Board extends JPanel implements MouseListener {
 		}
 		
 		 for(int i=0; i<100; i++){
-		       gracz.polaGracza[i].addMouseListener(this);
+		      // gracz.polaGracza[i].addMouseListener(this);
 		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
+		       
+		       if(gracz.statkiGracza[i] == true){
+		    	   gracz.polaGracza[i].setBackground(Color.black);
+		       }
 		 }
 		
 	}
@@ -130,18 +137,22 @@ public class Board extends JPanel implements MouseListener {
 				
 				
 				System.out.println("Atak na pole " + przeciwnik.polozeniePolaPrzeciwnika[i]);
-				if(rozgrywka.czyJestStatek[i] == true){
+				if(przeciwnik.statkiPrzeciwnika[i] == true){
 					
 					System.out.println("Trafiony !");
 				
 					//przeciwnik.polaPrzeciwnika[i].repaint();
-					Color t = new Color(179,0,0);
-					przeciwnik.polaPrzeciwnika[i].setBackground(Color.red);
+					Color t = new Color(255,127,0);
+					przeciwnik.polaPrzeciwnika[i].setBackground(t);
 				}else{
 					System.out.println("Pudlo !");
+					
+					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(153,255,0));
+					
+					rozgrywka.cpuMove();
 				}
 				
-				if(rozgrywka.zuzytePola[i] == true){
+				if(przeciwnik.zuzytePolaPrzeciwnika[i] == true){
 					
 					System.out.println("TEST: Zuzyte pole");
 				}else{
