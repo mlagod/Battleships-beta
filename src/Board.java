@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -52,12 +53,19 @@ public class Board extends JPanel implements MouseListener {
 		}
 		rozgrywka.ustawStatki(przeciwnik.statkiPrzeciwnika, przeciwnik.zuzytePolaPrzeciwnika);
 		rozgrywka.ustawStatki(gracz.statkiGracza, gracz.zuzytePolaGracza);
-		/*
-		for(int i = 0; i < 100; i++){
-			if(przeciwnik.zuzytePolaPrzeciwnika[i]==true){
-			przeciwnik.polaPrzeciwnika[i].setBackground(Color.yellow);
-			}
-		}*/
+		
+		JLabel autor = new JLabel("by Mateusz £agód");
+		autor.setBounds(500, 350, 120, 20);
+		add(autor);
+		
+		JLabel twojePola = new JLabel("Twoja flota");
+		twojePola.setBounds(115,290,120,20);
+		add(twojePola);
+		
+		JLabel polaAtaku = new JLabel("Pola ataku");
+		polaAtaku.setBounds(405, 290, 120, 20);
+		add(polaAtaku);
+		
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -127,7 +135,7 @@ public class Board extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		/*
 		
 		Object o = e.getSource();
 		
@@ -149,7 +157,7 @@ public class Board extends JPanel implements MouseListener {
 					
 					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(153,255,0));
 					
-					rozgrywka.cpuMove();
+					rozgrywka.cpuMove(gracz.statkiGracza, gracz.polaGracza);
 				}
 				
 				if(przeciwnik.zuzytePolaPrzeciwnika[i] == true){
@@ -160,7 +168,7 @@ public class Board extends JPanel implements MouseListener {
 				}
 			}
 		
-		}
+		} */
 		
 	}
 
@@ -178,7 +186,25 @@ public class Board extends JPanel implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		Object o = e.getSource();
 		
+		for(int i = 0; i < 100; i++){
+			
+			if(o == przeciwnik.polaPrzeciwnika[i]){
+				
+				System.out.println("Atak na pole " + przeciwnik.polozeniePolaPrzeciwnika[i]);
+				if(przeciwnik.statkiPrzeciwnika[i] == true){
+					
+					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(255,127,0));
+				}else{
+					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(153,255,0));
+					
+					rozgrywka.cpuMove(gracz.statkiGracza, gracz.polaGracza);	
+				}
+			
+			}
+		
+		}
 	}
 
 

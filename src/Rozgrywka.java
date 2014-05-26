@@ -1,12 +1,14 @@
 import java.awt.Color;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 
 public class Rozgrywka {
 	
 	Przeciwnik p = new Przeciwnik();
 	boolean atakCpu[] = new boolean[100];
-	Gracz g = new Gracz();
+	//Gracz g = new Gracz();
 	
 	
 	private void zajmijPolaCzteroPoziomoGora(int pole, boolean zuzytePola[]){
@@ -921,7 +923,7 @@ public class Rozgrywka {
 		
 	}
 	
-	public void cpuMove(){
+	public void cpuMove(boolean statkiGracza[], JPanel polaGracza[]){
 		
 		Random r = new Random();
 		
@@ -941,11 +943,15 @@ public class Rozgrywka {
 			}
 		}
 		
-		if(g.statkiGracza[strzal] == true){
-			g.polaGracza[strzal].setBackground(Color.orange);
-			this.cpuMove();
+		if(statkiGracza[strzal] == true){
+			polaGracza[strzal].setBackground(Color.orange);
+			this.cpuMove(statkiGracza, polaGracza);
+			System.out.println("#dbg: strzal =" + strzal);
 		}else{
-			g.polaGracza[strzal].setBackground(Color.green);
+			System.out.println("#dbg1: strzal = " + strzal);
+			//g.polaGracza[strzal] = new Gracz();
+			polaGracza[strzal].setBackground(Color.green);
+			
 		}
 		
 		

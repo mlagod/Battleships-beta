@@ -19,7 +19,7 @@ JFrame okno;
 	
 
 	okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	okno.setSize(640, 480);
+	okno.setSize(620, 400);
 	okno.setResizable(false);
 	okno.setVisible(true);
 	
