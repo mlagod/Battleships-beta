@@ -14,6 +14,7 @@ public class Przeciwnik extends JPanel {
 	//Color traf = new Color(179,0,0);
 	boolean[] statkiPrzeciwnika = new boolean[100];
 	boolean[] zuzytePolaPrzeciwnika = new boolean[100];
+	boolean[] statkiPrzeciwnikaZabite = new boolean[100];
 	
 	public Przeciwnik(){
 		this.setBackground(c);

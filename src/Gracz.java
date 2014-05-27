@@ -21,6 +21,7 @@ public class Gracz extends JPanel {
 	int[] polozeniePolaGracza = new int[100];
 	boolean[] statkiGracza = new boolean[100];
 	boolean[] zuzytePolaGracza = new boolean[100];
+	boolean[] statkiGraczaZabite = new boolean[100];
 	
 	
 	

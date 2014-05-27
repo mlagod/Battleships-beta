@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -66,6 +67,20 @@ public class Board extends JPanel implements MouseListener {
 		polaAtaku.setBounds(405, 290, 120, 20);
 		add(polaAtaku);
 		
+		 for(int i=0; i<100; i++){
+		      // gracz.polaGracza[i].addMouseListener(this);
+		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
+		       
+		       if(gracz.statkiGracza[i] == true){
+		    	   gracz.polaGracza[i].setBackground(Color.black);
+		       }
+		 }
+		
+		 // zapisanie duplikatu tablicy statków, w celu sprawdzania koñca gry
+		 for(int i = 0; i < 100; i++){
+			 gracz.statkiGraczaZabite[i] = gracz.statkiGracza[i]; 
+			 przeciwnik.statkiPrzeciwnikaZabite[i] = przeciwnik.statkiPrzeciwnika[i];
+		 }
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -122,53 +137,13 @@ public class Board extends JPanel implements MouseListener {
 			
 		}
 		
-		 for(int i=0; i<100; i++){
-		      // gracz.polaGracza[i].addMouseListener(this);
-		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
-		       
-		       if(gracz.statkiGracza[i] == true){
-		    	   gracz.polaGracza[i].setBackground(Color.black);
-		       }
-		 }
+		
 		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		/*
 		
-		Object o = e.getSource();
-		
-		for(int i = 0; i < 100; i++){
-			
-			if(o == przeciwnik.polaPrzeciwnika[i]){
-				
-				
-				System.out.println("Atak na pole " + przeciwnik.polozeniePolaPrzeciwnika[i]);
-				if(przeciwnik.statkiPrzeciwnika[i] == true){
-					
-					System.out.println("Trafiony !");
-				
-					//przeciwnik.polaPrzeciwnika[i].repaint();
-					Color t = new Color(255,127,0);
-					przeciwnik.polaPrzeciwnika[i].setBackground(t);
-				}else{
-					System.out.println("Pudlo !");
-					
-					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(153,255,0));
-					
-					rozgrywka.cpuMove(gracz.statkiGracza, gracz.polaGracza);
-				}
-				
-				if(przeciwnik.zuzytePolaPrzeciwnika[i] == true){
-					
-					System.out.println("TEST: Zuzyte pole");
-				}else{
-					System.out.println("TEST: Wolne");
-				}
-			}
-		
-		} */
 		
 	}
 
@@ -183,11 +158,14 @@ public class Board extends JPanel implements MouseListener {
 
 
 
+	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
 		
+		
+		System.out.println("debug");
 		for(int i = 0; i < 100; i++){
 			
 			if(o == przeciwnik.polaPrzeciwnika[i]){
@@ -195,16 +173,23 @@ public class Board extends JPanel implements MouseListener {
 				System.out.println("Atak na pole " + przeciwnik.polozeniePolaPrzeciwnika[i]);
 				if(przeciwnik.statkiPrzeciwnika[i] == true){
 					
-					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(255,127,0));
+					przeciwnik.polaPrzeciwnika[i].setBackground(Color.red);
+					przeciwnik.statkiPrzeciwnikaZabite[i] = false;
+					
 				}else{
 					przeciwnik.polaPrzeciwnika[i].setBackground(new Color(153,255,0));
 					
-					rozgrywka.cpuMove(gracz.statkiGracza, gracz.polaGracza);	
+					rozgrywka.cpuMove(gracz.statkiGracza, gracz.polaGracza, gracz.statkiGraczaZabite);	
+					
+			
 				}
 			
 			}
 		
 		}
+		
+		rozgrywka.koniecGry(gracz.statkiGraczaZabite, przeciwnik.statkiPrzeciwnikaZabite);
+		
 	}
 
 

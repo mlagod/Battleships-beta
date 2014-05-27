@@ -1,15 +1,19 @@
 import java.awt.Color;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 public class Rozgrywka {
 	
-	Przeciwnik p = new Przeciwnik();
+	//Przeciwnik p = new Przeciwnik();
 	boolean atakCpu[] = new boolean[100];
-	//Gracz g = new Gracz();
 	
+
+	
+
 	
 	private void zajmijPolaCzteroPoziomoGora(int pole, boolean zuzytePola[]){
 		
@@ -923,7 +927,7 @@ public class Rozgrywka {
 		
 	}
 	
-	public void cpuMove(boolean statkiGracza[], JPanel polaGracza[]){
+	public void cpuMove(boolean statkiGracza[], JPanel polaGracza[], boolean statkiGraczaZabite[]){
 		
 		Random r = new Random();
 		
@@ -943,18 +947,93 @@ public class Rozgrywka {
 			}
 		}
 		
-		if(statkiGracza[strzal] == true){
-			polaGracza[strzal].setBackground(Color.orange);
-			this.cpuMove(statkiGracza, polaGracza);
-			System.out.println("#dbg: strzal =" + strzal);
-		}else{
-			System.out.println("#dbg1: strzal = " + strzal);
-			//g.polaGracza[strzal] = new Gracz();
-			polaGracza[strzal].setBackground(Color.green);
+		if(statkiGracza[strzal] == true){	// trafil
+		
+		int kierunekStrzalu = r.nextInt(20);
+	
+		if(kierunekStrzalu % 2 == 0){	//kierunek poziomy
+			
+			while(statkiGracza[strzal] == true){
+				
+				polaGracza[strzal].setBackground(Color.red);
+				statkiGraczaZabite[strzal] = false; //opcja
+				
+				System.out.println("#dbg: komputer, poziom - trafiony, pole: " + strzal);
+			
+				
+				if(strzal < 99){
+					strzal++;
+				}else{
+					strzal--;
+				}
+			}
+			
+			if(statkiGracza[strzal] == false){
+				polaGracza[strzal].setBackground(new Color(153,255,0));
+				System.out.println("#dbg: komputer - pudlo po ataku poziomym, pole:" + strzal);
+			}
+			
+		}else{	// kierunek pionowy
+			
+			while(statkiGracza[strzal] == true){
+				polaGracza[strzal].setBackground(Color.red);
+				statkiGraczaZabite[strzal] = false;	//opcja
+				System.out.println("#dbg: komputer, pion - trafiony, pole: " + strzal);
+				
+		
+				if(strzal < 90){
+					strzal+=10;
+				}else{
+					strzal-=10;
+				}
+			}
+			
+			if(statkiGracza[strzal] == false){
+				polaGracza[strzal].setBackground(new Color(153,255,0));
+				System.out.println("#dbg: komputer - pudlo po ataku poziomym, pole:" + strzal);
+			}
 			
 		}
-		
-		
+		}else{		//nie trafil
+			
+			polaGracza[strzal].setBackground(new Color(153,255,0));
+			System.out.println("#dbg: komputer - pudlo, pole:" + strzal);
+			
+		}
 	}
 
+	public void koniecGry(boolean[] tablicaStatkowGracza,boolean[] tablicaStatkowPrzeciwnika){
+		
+		boolean czyWszystkieZabite = true;
+		Popup p = new Popup();
+		
+		for(int i = 0; i < 100; i++){
+			
+			if(tablicaStatkowGracza[i] == true){
+				
+				czyWszystkieZabite = false;
+			}
+		}
+		
+		if(czyWszystkieZabite == true){
+			
+			p.wynik = new JLabel("Przegra³eœ :(");
+			p.pop();
+		}
+		
+		for(int i = 0; i < 100; i++){
+			
+			if(tablicaStatkowPrzeciwnika[i] == true){
+				
+				czyWszystkieZabite = false;
+			}
+		}
+		
+		if(czyWszystkieZabite == true){
+			
+			p.wynik = new JLabel("Wygrales !!! :)");
+			p.pop();
+		}
+	}
+	
 }
