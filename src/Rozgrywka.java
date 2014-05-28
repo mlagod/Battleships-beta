@@ -5,15 +5,19 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Mat
+ *Klasa odpowiadajaca za rozgrywke
+ */
 
 public class Rozgrywka {
 	
-	//Przeciwnik p = new Przeciwnik();
+	
 	boolean atakCpu[] = new boolean[100];
 	
 
-	
-
+	/** Metody zajmujace pola, na ktorych nie mozna postawic nowego statku */
 	
 	private void zajmijPolaCzteroPoziomoGora(int pole, boolean zuzytePola[]){
 		
@@ -654,6 +658,8 @@ public class Rozgrywka {
 		}
 	}
 	
+	/** Metoda ustawiajaca statki na planszy */
+	
 	public void ustawStatki(boolean[] czyJestStatek, boolean zuzytePola[]){
 	
 		boolean poziom;
@@ -926,6 +932,8 @@ public class Rozgrywka {
 		
 		
 	}
+	
+	/** Metoda odpowiadajaca za atak komputera */
 	
 	public void cpuMove(boolean statkiGracza[], JPanel polaGracza[], boolean statkiGraczaZabite[]){
 		

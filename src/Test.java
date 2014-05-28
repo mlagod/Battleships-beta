@@ -1,6 +1,20 @@
 
+/**
+ * 
+ * @author Mateusz £agód 
+ * Wojskowa Akademia Techniczna
+ * I2Y1S1
+ * 
+ * @version beta
+ *
+ */
 
 
+/**
+ * 
+ * Klasa uruchamiajaca program
+ *
+ */
 public class Test {
 
 

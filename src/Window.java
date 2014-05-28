@@ -2,7 +2,13 @@ import java.awt.Color;
 
 import javax.swing.*;
 
-
+/**
+ * 
+ * @author Mat
+ * 
+ * Klasa tworzaca okno gry
+ *
+ */
 
 public class Window {
 	

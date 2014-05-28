@@ -10,6 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Mat
+ *
+ *Klasa wypelniajaca okno gry, wszystkimi potrzebnymi elementami, obsluguje myszke.
+ */
 
 public class Board extends JPanel implements MouseListener {
 	
@@ -18,10 +24,12 @@ public class Board extends JPanel implements MouseListener {
 	Przeciwnik przeciwnik = new Przeciwnik();
 	Rozgrywka rozgrywka = new Rozgrywka();
 	
+	/** Tablice stringow z zapisanymi wartosciami wypisywanymi na planszy */
+	
 	String[] letters = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J"};
 	String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 	
-
+/** Konstruktor klasy */
 	Board(){
 		
 		for(int j = 0; j < 10; j++){
@@ -29,16 +37,15 @@ public class Board extends JPanel implements MouseListener {
 			for(int i = 0; i < 10; i++){
 				
 				
-				// pola gracza wypelnione statkami, przeciwnika PustePola
+				/** Dodanie paneli z polami gracza i przeciwnika */
 				gracz.polaGracza[panelCounter]=new Gracz();	
 				przeciwnik.polaPrzeciwnika[panelCounter] = new Przeciwnik();
 				
-				//przypisanie numerow pol do tablicy
+				/**przypisanie numerow pol do tablicy */
 				gracz.polozeniePolaGracza[panelCounter] = panelCounter;
 				przeciwnik.polozeniePolaPrzeciwnika[panelCounter] = panelCounter;
 				
-			// todo: rozgrywka
-				
+			/** Ustawienie polozenia paneli */
 				
 		        gracz.polaGracza[panelCounter].setBounds(32+25*i,32+25*j,22,22);
 		        przeciwnik.polaPrzeciwnika[panelCounter].setBounds(322+25*i,32+25*j,22,22);
@@ -68,7 +75,7 @@ public class Board extends JPanel implements MouseListener {
 		add(polaAtaku);
 		
 		 for(int i=0; i<100; i++){
-		      // gracz.polaGracza[i].addMouseListener(this);
+		     
 		       przeciwnik.polaPrzeciwnika[i].addMouseListener(this);
 		       
 		       if(gracz.statkiGracza[i] == true){
@@ -76,7 +83,7 @@ public class Board extends JPanel implements MouseListener {
 		       }
 		 }
 		
-		 // zapisanie duplikatu tablicy statków, w celu sprawdzania koñca gry
+		 /** zapisanie duplikatu tablicy statków, w celu sprawdzania koñca gry */
 		 for(int i = 0; i < 100; i++){
 			 gracz.statkiGraczaZabite[i] = gracz.statkiGracza[i]; 
 			 przeciwnik.statkiPrzeciwnikaZabite[i] = przeciwnik.statkiPrzeciwnika[i];
@@ -91,7 +98,7 @@ public class Board extends JPanel implements MouseListener {
 		Color background = new Color(223,223,223);
 		setBackground(background);
 		
-			// Rysowanie planszy
+			/** Rysowanie planszy */
 		
 			for(int i = 30; i < 280; i+=25){
 			
@@ -109,7 +116,7 @@ public class Board extends JPanel implements MouseListener {
 				g2d.drawRect(j, i, 25, 25);
 		}
 
-		// Rysowanie liter przy planszy
+		/** Rysowanie liter przy planszy */
 		
 		int pozycjaLiteryA = 40;
 		int pozycjaliteryB = 330;
@@ -124,7 +131,7 @@ public class Board extends JPanel implements MouseListener {
 			
 		}
 		
-		// Rysowanie numerkow przy planszy
+		/** Rysowanie numerkow przy planszy */
 		
 		int pozycjaNum = 47;
 		
